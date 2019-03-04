@@ -5,8 +5,10 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.junit.Test;
 
 import java.net.InetSocketAddress;
+import java.util.Arrays;
 
 /**
  * @Author Administrator
@@ -14,6 +16,11 @@ import java.net.InetSocketAddress;
  */
 public class EchoServer {
     private final int port;
+
+    public EchoServer() {
+        //do nothing
+        this.port=8888;
+    }
 
     public EchoServer(int port) {
         this.port = port;
@@ -51,4 +58,5 @@ public class EchoServer {
             group.shutdownGracefully().sync();
         }
     }
+
 }

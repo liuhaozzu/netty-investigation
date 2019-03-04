@@ -27,6 +27,7 @@ public class EchoClientHandler  extends SimpleChannelInboundHandler<ByteBuf> {
         //由服务器发送的消息可能会被分块接收
         //该方法返回时，父类会负责释放指向保存该消息的ByteBuf的内存引用
         System.out.println("Client received:" + msg.toString(StandardCharsets.UTF_8));
+        ctx.fireChannelRead("abc");
 
     }
 
