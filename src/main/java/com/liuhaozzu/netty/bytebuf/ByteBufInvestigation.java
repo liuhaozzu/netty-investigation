@@ -1,5 +1,8 @@
 package com.liuhaozzu.netty.bytebuf;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import io.netty.buffer.*;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
@@ -13,6 +16,7 @@ import sun.reflect.misc.FieldUtil;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @Author Administrator
@@ -148,6 +152,19 @@ public class ByteBufInvestigation {
         boolean released = buf.release();
         System.out.println(released);
         //ChannelHandler
+    }
+
+    @Test
+    public void cacheTest() throws ExecutionException {
+        LoadingCache<String,String> loadingCache= CacheBuilder.newBuilder().build(new CacheLoader<String, String>() {
+            @Override
+            public String load(String s) throws Exception {
+                return null;
+            }
+        });
+
+        System.out.println(loadingCache.getIfPresent(123L));
+
     }
 
 }

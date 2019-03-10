@@ -5,6 +5,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.AttributeKey;
 import org.junit.Test;
 
 import java.net.InetSocketAddress;
@@ -31,6 +32,10 @@ public class EchoServer {
             System.err.println("Usage: " + EchoServer.class.getSimpleName() + " ");
         }*/
         //int port = Integer.parseInt(args[0]);
+
+
+
+
         int port=8888;
         new EchoServer(port).start();
     }
@@ -38,6 +43,7 @@ public class EchoServer {
     private void start() throws Exception {
         final EchoServerHandler serverHandler = new EchoServerHandler();
         EventLoopGroup group = new NioEventLoopGroup();
+        final AttributeKey<Integer> id = AttributeKey.newInstance("ID");
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(group)

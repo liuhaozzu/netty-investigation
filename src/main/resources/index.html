@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <input id="msg" type="text"> <button id="send">send</button>
+    <br/>
+    <button id="connect">connect</button>
+    <script>
+        wsUri = "ws://localhost:8888/ws"
+
+        $("#send").click(function () {
+            txt = $("#msg").val()
+            $.ajax({
+                type: "POST",
+                url: "/",
+                headers:{
+                    connection:"upgrade"
+                },
+                success: function(result) {
+                    alert(result);
+                },
+                error: function (err) {
+                    alert(err)
+                }
+            });
+        });
+        $("#connect").click(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "/ws",
+                beforeSend: function(request) {
+                    request.setRequestHeader("connection","upgrade");
+                },
+                headers:{
+                    'Content-Type':'application/json;charset=utf8',
+                    'organId':'1333333333',
+                    'connection':'upgrade',
+                    "upgrade":"websocket",
+                    "origin":"www.baidu.com"
+                },
+                success: function(result) {
+                    alert(JSON.stringify(result));
+                },
+                error: function (err) {
+                    alert(JSON.stringify(err))
+                }
+            });
+        });
+    </script>
+</body>
+</html>
