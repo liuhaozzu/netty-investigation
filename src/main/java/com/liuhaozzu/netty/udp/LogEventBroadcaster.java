@@ -64,7 +64,7 @@ public class LogEventBroadcaster {
 
     public static void main(String[] args) throws Exception {
         int port =8888;
-        LogEventBroadcaster broadcaster = new LogEventBroadcaster(new InetSocketAddress("255.255.255.255", port), new File(""));
+        LogEventBroadcaster broadcaster = new LogEventBroadcaster(new InetSocketAddress("255.255.255.255", port), new File("pom.xml"));
 
         try {
             broadcaster.run();
