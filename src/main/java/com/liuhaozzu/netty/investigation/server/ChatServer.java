@@ -47,7 +47,7 @@ public class ChatServer {
     }
 
     public static void main(String[] args) throws Exception {
-        int port=8888;
+        int port=8080;
         final ChatServer endpoint = new ChatServer();
         ChannelFuture future = endpoint.start(new InetSocketAddress(port));
         Runtime.getRuntime().addShutdownHook(new Thread(() -> endpoint.destroy()));
